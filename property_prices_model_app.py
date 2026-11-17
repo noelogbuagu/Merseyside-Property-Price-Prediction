@@ -1,3 +1,4 @@
+from pathlib import Path
 import streamlit as st
 import pandas as pd
 import pickle
@@ -9,7 +10,7 @@ import plotly.graph_objects as go
 
 # Load dataset to define feature ranges
 df = pd.read_csv(
-    "/Users/Blurryface/Documents/GitHub/Dissertation/clean_data/final_df.csv")
+    str(Path(__file__).parent / "clean_data" / "final_df.csv"))
 df['year'] = pd.to_datetime(df['transfer_date']).dt.year
 df['month'] = pd.to_datetime(df['transfer_date']).dt.month
 
@@ -116,7 +117,7 @@ if submit_button:
     
     try:
         # Load the trained pipeline (preprocessor + model)
-        with open("/Users/Blurryface/Documents/GitHub/Dissertation/final_model_pipeline.pkl", "rb") as f:
+        with open(Path(__file__).parent / "final_model_pipeline.pkl", "rb") as f:
             model_pipeline = pickle.load(f)
 
         # Apply the same preprocessing to the input data

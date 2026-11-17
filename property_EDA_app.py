@@ -1,3 +1,4 @@
+from pathlib import Path
 import plotly.express as px
 import streamlit as st
 import pandas as pd
@@ -19,7 +20,7 @@ st.write('---')
 
 # load dataset
 df = pd.read_csv(
-    "/Users/Blurryface/Documents/GitHub/Dissertation/clean_data/final_df.csv")
+    str(Path(__file__).parent / "clean_data" / "final_df.csv"))
 X = df.drop('price', axis=1)
 y = df['price']
 
